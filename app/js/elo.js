@@ -1,4 +1,9 @@
 var Arrays = {
+    /**
+    * Zips two arrays together using function 'f'.
+    * Note that if one array is longer then the other f will be
+    * called with null values for the shorter array.
+    **/
     zip : function(array1, array2, f){
         if(!(Array.isArray(array1) &&
                 Array.isArray(array2))){
@@ -17,6 +22,14 @@ var Arrays = {
 
 var ELO = {
 
+    /**
+    * Calculate ELO scores for a game given input scores and settings.
+    * Input scores are the current scores of the players, ordered by game
+    * result (first place in the game is index 0 in the scores array).
+    * Settings contains volatility (how much scores change) and the
+    * scoring table.
+    * See unit tests for usage examples.
+    **/
     Calculate : function (scores, settings){
         var origscores = scores.slice()
         var numplayers = origscores.length
@@ -42,6 +55,10 @@ var ELO = {
         return resultscores
     },
 
+    /**
+    * Generate a scoring table that divides "1" over all
+    * participants based on a power function
+    **/
     Scoring : function (numplayers, power) {
         var scoring = []
         var total = 0
