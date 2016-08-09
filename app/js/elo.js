@@ -1,4 +1,4 @@
-var Arrays = {
+Arrays = {
     /**
     * Zips two arrays together using function 'f'.
     * Note that if one array is longer then the other f will be
@@ -20,7 +20,7 @@ var Arrays = {
     }
 }
 
-var ELO = {
+ELO = {
 
     /**
     * Calculate ELO scores for a game given input scores and settings.
