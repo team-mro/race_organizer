@@ -1,15 +1,20 @@
 $(document).ready(function() {
 
-var onChange = function(){
+var calculate_elo = function(){
     var scores = []
+
     $("#ELO_table").find("input.score").each(function(i){
         if($(this).val() == "") return false
         scores[i] = Number($(this).val())
     })
 
-    scores = ELO.Calculate(scores,{volatility:25,scoring:function(numplayers){
+    return ELO.Calculate(scores,{volatility:25,scoring:function(numplayers){
         return ELO.Scoring(numplayers,2)
     }})
+}
+
+var onChange = function(){
+    var scores = calculate_elo()
 
     $("#ELO_table").find("td.score_output").each(function(i){
         if(scores[i] == null){
@@ -26,6 +31,18 @@ $("#ELO_table").find("input.score").each(function(i){
 
 $("#ELO_table tbody").sortable({
     stop: onChange
+})
+
+$("button#next").click(function(){
+    var scores = calculate_elo()
+
+    $("#ELO_table").find("input.score").each(function(i){
+        if(scores[i] != null){
+            $(this).val(scores[i])
+        }
+    })
+
+    onChange()
 })
 
 })
