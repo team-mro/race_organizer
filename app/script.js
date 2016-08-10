@@ -3,6 +3,7 @@ $(document).ready(function() {
 var onChange = function(){
     var scores = []
     $("#ELO_table").find("input.score").each(function(i){
+        if($(this).val() == "") return false
         scores[i] = Number($(this).val())
     })
 
@@ -11,7 +12,11 @@ var onChange = function(){
     }})
 
     $("#ELO_table").find("td.score_output").each(function(i){
-        $(this).text(scores[i])
+        if(scores[i] == null){
+            $(this).text("")
+        }else{
+            $(this).text(scores[i])
+        }
     })
 }
 
