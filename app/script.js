@@ -24,4 +24,8 @@ $("#ELO_table").find("input.score").each(function(i){
     $(this).change(onChange)
 })
 
+$("#ELO_table tbody").sortable({
+    stop: onChange
+})
+
 })
