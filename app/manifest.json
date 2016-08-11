@@ -16,5 +16,5 @@
     "64": "img/icon.png",
     "128": "img/icon.png"
   },
-  "permissions": []
+  "permissions": ["storage", "<all_urls>", "unlimitedStorage"]
 }

@@ -28,6 +28,10 @@ var onChange = function(){
     })
 }
 
+$("#tabs").tabs({
+    heightStyle: "fill"
+})
+
 $("#ELO_table").find("input.score").each(function(i){
     $(this).change(onChange)
 })
