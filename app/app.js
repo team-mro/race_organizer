@@ -1,3 +1,6 @@
+var db = new PouchDB('RO');
+
+
 $(document).ready(function() {
 
 var calculate_elo = function(){
