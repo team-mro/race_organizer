@@ -1,55 +1,24 @@
-var db = new PouchDB('RO');
+DB = new PouchDB('RO');
 
+APP = {loaded_tabs:0}
+
+var tabloaded = function(f){ return function(){
+    var tabs = Object.keys(TABS).length;
+    APP.loaded_tabs = APP.loaded_tabs + 1;
+
+    if(APP.loaded_tabs = tabs){
+        $("#tabs").tabs({
+            heightStyle: "fill"
+        });
+    }
+
+    if(f != null) f();
+}}
 
 $(document).ready(function() {
 
-var calculate_elo = function(){
-    var scores = []
+$("#tab_racers").load("tab/racers.html", tabloaded());
+$("#tab_score").load("tab/elo.html", tabloaded(TABS.elo.ready));
 
-    $("#ELO_table").find("input.score").each(function(i){
-        if($(this).val() == "") return false
-        scores[i] = Number($(this).val())
-    })
-
-    return ELO.Calculate(scores,{volatility:25,scoring:function(numplayers){
-        return ELO.Scoring(numplayers,2)
-    }})
-}
-
-var onChange = function(){
-    var scores = calculate_elo()
-
-    $("#ELO_table").find("td.score_output").each(function(i){
-        if(scores[i] == null){
-            $(this).text("")
-        }else{
-            $(this).text(scores[i])
-        }
-    })
-}
-
-$("#tabs").tabs({
-    heightStyle: "fill"
-})
-
-$("#ELO_table").find("input.score").each(function(i){
-    $(this).change(onChange)
-})
-
-$("#ELO_table tbody").sortable({
-    stop: onChange
-})
-
-$("button#next").click(function(){
-    var scores = calculate_elo()
-
-    $("#ELO_table").find("input.score").each(function(i){
-        if(scores[i] != null){
-            $(this).val(scores[i])
-        }
-    })
-
-    onChange()
-})
 
 })

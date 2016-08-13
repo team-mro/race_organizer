@@ -33,6 +33,8 @@ ELO = {
     Calculate : function (scores, settings){
         var origscores = scores.slice()
         var numplayers = origscores.length
+        if(numplayers == 0) return origscores
+
         var totalscore = origscores.reduce(function(total, score){
             return total + score
         })
