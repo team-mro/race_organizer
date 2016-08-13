@@ -17,7 +17,7 @@ var tabloaded = function(f){ return function(){
 
 $(document).ready(function() {
 
-$("#tab_racers").load("tab/racers.html", tabloaded());
+$("#tab_racers").load("tab/racers.html", tabloaded(TABS.racers.ready));
 $("#tab_score").load("tab/elo.html", tabloaded(TABS.elo.ready));
 
 
